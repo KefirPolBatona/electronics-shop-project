@@ -5,6 +5,14 @@ from src import item
 class TestItem:
     """Тесты для класса Item"""
 
+    def test_repr(self):
+        item1 = item.Item("Samsung", 55555, 22)
+        assert repr(item1) == "Item('Samsung', 55555, 22)"
+
+    def test_str(self):
+        item1 = item.Item("Apple", 55555, 22)
+        assert str(item1) == 'Apple'
+
     def test_calculate_total_price_1(self):
         """
         Проверяет произведение цены на количество товаров
