@@ -1,17 +1,30 @@
 import pytest
 from src import item
+from src import phone
 
 
 class TestItem:
     """Тесты для класса Item"""
 
     def test_repr(self):
+        """
+        Проверяет значение метода repr.
+        """
         item1 = item.Item("Samsung", 55555, 22)
         assert repr(item1) == "Item('Samsung', 55555, 22)"
 
     def test_str(self):
+        """
+        Проверяет значение метода str.
+        """
         item1 = item.Item("Apple", 55555, 22)
         assert str(item1) == 'Apple'
+
+    def test_add(self):
+        """
+        Проверяет, является ли класс Phone подклассом Item.
+        """
+        assert issubclass(phone.Phone, item.Item)
 
     def test_calculate_total_price_1(self):
         """
