@@ -36,6 +36,12 @@ class Item:
         """
         return self.__name
 
+    def __add__(self, other):
+        """
+        Определяет общее количество двух товаров.
+        """
+        return self.quantity + other.quantity
+
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
