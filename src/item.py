@@ -5,19 +5,26 @@ import src
 
 class Item:
     """
-    Класс для представления товара в магазине.
+    Родительский класс для представления товара в магазине.
+
+    Свойства:
+    pay_rate - размер скидки на товар,
+    all - список экземпляров класса.
     """
     pay_rate = 1.0
     all = []
 
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """
-        Создание экземпляра класса item.
+        Инициализирует экземпляр класса item.
+        Наследует класс MixinLanguage в src.keyboard - "super().__init__()".
 
-        :param name: Название товара.
-        :param price: Цена за единицу товара.
-        :param quantity: Количество товара в магазине.
+        Создает свойства:
+        self.__name - Название товара,
+        self.price - Цена за единицу товара,
+        self.quantity - Количество товара в магазине.
         """
+        super().__init__()
         self.__name = name
         self.price = price
         self.quantity = quantity
@@ -44,8 +51,7 @@ class Item:
 
     def calculate_total_price(self) -> float:
         """
-        Рассчитывает общую стоимость конкретного товара в магазине.
-        :return: Общая стоимость товара.
+        Рассчитывает и возвращает общую стоимость конкретного товара в магазине.
         """
 
         result = int(self.price * self.quantity)
@@ -53,7 +59,8 @@ class Item:
 
     def apply_discount(self) -> float:
         """
-        Применяет установленную скидку для конкретного товара.
+        Применяет скидку, установленную для конкретного товара.
+        Возвращает стоимость со скидкой.
         """
         self.price = float(self.price * self.pay_rate)
         return self.price
