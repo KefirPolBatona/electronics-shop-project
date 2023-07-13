@@ -1,6 +1,7 @@
 import pytest
 from src import item
 from src import phone
+from src.item import InstantiateCSVError
 
 
 class TestItem:
@@ -79,6 +80,22 @@ class TestItem:
         item.Item.instantiate_from_csv()
         quantity_test = item.Item.all[4]
         assert quantity_test.quantity == 5
+
+    def test_instantiate_from_csv_5(self):
+        """
+        Проверяет наличие исключения при обращении к несуществующему файлу 'items_no_file.csv'.
+        """
+
+        with pytest.raises(FileNotFoundError):
+            item.Item.instantiate_from_csv('items_no_file.csv')
+
+    def test_instantiate_from_csv_6(self):
+        """
+        Проверяет наличие исключения при обращении к файлу 'items_test.csv' с недостающими данными.
+        """
+
+        with pytest.raises(InstantiateCSVError):
+            item.Item.instantiate_from_csv('items_test.csv')
 
     def test_string_to_number(self):
         """
